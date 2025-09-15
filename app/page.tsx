@@ -41,7 +41,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "work", "thoughts", "connect"].map((section) => (
+          {["intro", "experience", "work", "thoughts", "connect"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -86,6 +86,27 @@ export default function Home() {
                   </div>
                   <div>Chennai, Tamil Nadu</div>
                 </div>
+                <a
+                  href="https://drive.google.com/file/d/1eKK5MCpnqMrnQuGZJcW7uV11uoUrJ7VA/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300"
+                >
+                  <span>View Resume</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
               </div>
             </div>
 
@@ -116,7 +137,55 @@ export default function Home() {
           </div>
         </header>
 
-        <section id="work" ref={(el) => (sectionsRef.current[1] = el)} className="min-h-screen py-32 opacity-0">
+        <section id="experience" ref={(el) => (sectionsRef.current[1] = el)} className="min-h-screen py-32 opacity-0">
+          <div className="space-y-16">
+            <div className="flex items-end justify-between">
+              <h2 className="text-4xl font-light">EXPERIENCE</h2>
+              <div className="text-sm text-muted-foreground font-semibold">My Journey 🚀</div>
+            </div>
+
+            <div className="space-y-12">
+              {[
+                {
+                  role: "Research Intern - Remote",
+                  company: "Samsung R&D Institute India",
+                  duration: "Aug 2025 - Present",
+                  description: "Selected to participate in Samsung PRISM, a research collaboration program with SRI-India engineers and VIT Chennai faculties. Working on a Computer Vision project: HDR → SDR image conversion for mobile devices, focusing on tone mapping and perceptual quality enhancement.Implementing and benchmarking deep learning–based tone mapping techniques with emphasis on efficiency for real-time mobile deployment.Conducting literature review and dataset preparation to analyze existing HDR/SDR methods and identify improvements.",
+                  tech: ["Deep Learning", "Computer Vision", "Image Signal Processing", "Tone Mapping", "Machine Learning", "OpenCV", "TensorFlow", "Python"],
+                },
+                // Add more experiences as needed
+              ].map((exp, index) => (
+                <div
+                  key={index}
+                  className="group grid lg:grid-cols-12 gap-8 py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
+                >
+                  <div className="lg:col-span-3">
+                    <div className="text-foreground">{exp.company}</div>
+                    <div className="text-sm text-muted-foreground">{exp.duration}</div>
+                  </div>
+
+                  <div className="lg:col-span-6 space-y-3">
+                    <h3 className="text-xl font-medium">{exp.role}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
+                  </div>
+
+                  <div className="lg:col-span-3 flex flex-wrap gap-2 lg:justify-end">
+                    {exp.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 text-xs font-semibold text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="work" ref={(el) => (sectionsRef.current[2] = el)} className="min-h-screen py-32 opacity-0">
           <div className="space-y-16">
             <div className="flex items-end justify-between">
               <h2 className="text-4xl font-light">PROJECTS</h2>
@@ -125,6 +194,13 @@ export default function Home() {
 
             <div className="space-y-12">
               {[
+                {
+                  link: "https://github.com/KkaushikK18/AI-Driven-Risk-Prediction-Engine-for-Chronic-Care-Patients",
+                  projectTitle: "AI-Driven Risk Prediction Engine for Chronic Care Patients",
+                  projectType: "Personal Project", // (this replaced company)
+                  projectDescription: "An AI-powered risk prediction engine that forecasts the probability of clinical deterioration within 90 days for patients with chronic illnesses. Built on MIMIC-IV clinical data and validated with synthetic Synthea patients, this project combines advanced ML models with an interactive dashboard for clinician-friendly insights.",
+                  tech: ["XGBoost", "Random Forest", "Python", "Matplotlib", "Seaborn", "Synthea", "Flask"],
+                },
                 {
                   link: "https://github.com/KkaushikK18/Credit-Score",
                   projectTitle: "AI-Powered Alternative Credit Scoring System",
@@ -193,7 +269,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="thoughts" ref={(el) => (sectionsRef.current[2] = el)} className="min-h-screen py-32 opacity-0">
+        <section id="thoughts" ref={(el) => (sectionsRef.current[3] = el)} className="min-h-screen py-32 opacity-0">
           <div className="space-y-16">
             <h2 className="text-4xl font-light">ACHIEVEMENTS</h2>
 
@@ -267,7 +343,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => (sectionsRef.current[3] = el)} className="py-32 opacity-0">
+        <section id="connect" ref={(el) => (sectionsRef.current[4] = el)} className="py-32 opacity-0">
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <h2 className="text-4xl font-light">Let's Connect</h2>
