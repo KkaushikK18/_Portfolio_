@@ -146,7 +146,7 @@ export default function Home() {
           <div className="space-y-16">
             <div className="flex items-end justify-between">
               <h2 className="text-4xl font-light">EXPERIENCE</h2>
-              <div className="text-sm text-muted-foreground font-semibold">My Journey 🚀</div>
+              <div className="text-sm text-muted-foreground font-semibold ml-4">My Journey 🚀</div>
             </div>
 
             <div className="space-y-12">
