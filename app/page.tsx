@@ -14,24 +14,29 @@ export default function Home() {
   }, [isDark])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up")
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      { threshold: 0.3, rootMargin: "0px 0px -20% 0px" },
-    )
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fade-in-up")
+          // Ensure opacity is reset on mobile
+          entry.target.style.opacity = "1"
+          setActiveSection(entry.target.id)
+        }
+      })
+    },
+    { 
+      threshold: window.innerWidth < 768 ? 0.1 : 0.3, 
+      rootMargin: "0px 0px -10% 0px" 
+    },
+  )
 
-    sectionsRef.current.forEach((section) => {
-      if (section) observer.observe(section)
-    })
+  sectionsRef.current.forEach((section) => {
+    if (section) observer.observe(section)
+  })
 
-    return () => observer.disconnect()
-  }, [])
+  return () => observer.disconnect()
+}, [])
 
   const toggleTheme = () => {
     setIsDark(!isDark)
@@ -185,14 +190,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" ref={(el) => (sectionsRef.current[2] = el)} className="min-h-screen py-32 opacity-0">
-          <div className="space-y-16">
+        <section 
+          id="work" 
+          ref={(el) => (sectionsRef.current[2] = el)} 
+          className="min-h-screen py-16 md:py-32 opacity-0 w-full"
+        >
+          <div className="space-y-8 md:space-y-16">
             <div className="flex items-end justify-between">
-              <h2 className="text-4xl font-light">PROJECTS</h2>
+              <h2 className="text-3xl md:text-4xl font-light">PROJECTS</h2>
               <div className="text-sm text-muted-foreground font-semibold">Made with ♡</div>
             </div>
 
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {[
                 {
                   link: "https://github.com/KkaushikK18/AI-Driven-Risk-Prediction-Engine-for-Chronic-Care-Patients",
@@ -232,7 +241,7 @@ export default function Home() {
               ].map((job, index) => (
                 <div
                   key={index}
-                  className="group grid lg:grid-cols-12 gap-8 py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
+                  className="group flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
                 >
                   <div className="lg:col-span-2 flex items-center">
                   <a

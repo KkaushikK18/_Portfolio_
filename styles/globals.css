@@ -121,3 +121,19 @@
     @apply bg-background text-foreground;
   }
 }
+/* Add these styles to your existing CSS */
+@media (max-width: 768px) {
+  section {
+    overflow-x: hidden;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  #work {
+    background-color: var(--background);
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+}
